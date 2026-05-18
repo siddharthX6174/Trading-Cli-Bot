@@ -1,4 +1,4 @@
-# Kitetsu Trading Bot
+# Trading Bot
 
 Small Binance Futures (USDT-M) testnet trading bot exposing a simple HTTP API and a CLI for placing orders.
 
@@ -96,11 +96,6 @@ python cli.py --symbol BTCUSDT --side SELL --order_type STOP_LIMIT --quantity 0.
 
 Logs are written to `logs/trading_bot.log` and warnings/errors also print to the console. The logger is configured in `bot/logging_config.py`.
 
-## Tests
-
-No automated tests are included. Recommended quick additions:
-- unit tests for `bot/validators.py` (input validation)
-- mocked integration tests for `bot/orders.py` to assert the constructed params
 
 ## Contributing / Safety
 
@@ -108,4 +103,3 @@ No automated tests are included. Recommended quick additions:
 - If you want, I can add a `.env.example` and basic unit tests next.
 
 ---
-Updated to reflect the current project layout and usage.
