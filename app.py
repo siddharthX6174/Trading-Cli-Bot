@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 from dotenv import load_dotenv
+from binance.exceptions import BinanceAPIException, BinanceRequestException
 from bot.client import get_client
 from bot.orders import place_order
 from bot.validators import validate_order
@@ -54,8 +55,14 @@ def create_order():
 
         return jsonify(result), 200
 
+    except (PermissionError, ConnectionError, ValueError) as e:
+        logger.error("Flask order error: %s", e)
+        return jsonify({"error": str(e)}), 400
+    except (BinanceAPIException, BinanceRequestException) as e:
+        logger.error("Flask Binance error: %s", e)
+        return jsonify({"error": str(e)}), 502
     except Exception as e:
-        logger.error(f"Flask order error: {e}")
+        logger.exception("Unhandled Flask order error")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":

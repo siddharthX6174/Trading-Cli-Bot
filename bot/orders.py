@@ -1,4 +1,5 @@
 from binance.enums import TIME_IN_FORCE_GTC
+from binance.exceptions import BinanceAPIException, BinanceRequestException
 from bot.logging_config import setup_logger
 
 logger = setup_logger()
@@ -36,8 +37,24 @@ def place_order(client, symbol, side, order_type, quantity, price=None, stop_pri
 
     try:
         response = client.futures_create_order(**params)
-        logger.info(f"Order success | response: {response}")
+        logger.info("Order success | response: %s", response)
         return response
-    except Exception as e:
-        logger.error(f"Order failed | error: {e}")
+    except BinanceAPIException as exc:
+        logger.error(
+            "Binance API error | code=%s | message=%s | params=%s",
+            getattr(exc, "code", None),
+            getattr(exc, "message", str(exc)),
+            params,
+        )
+        if getattr(exc, "code", None) == -2015:
+            raise PermissionError(
+                "Binance rejected the API key for this testnet endpoint. "
+                "Use Binance Futures Testnet credentials and confirm any IP whitelist settings."
+            ) from exc
+        raise
+    except BinanceRequestException as exc:
+        logger.error("Binance network/request error | params=%s | error=%s", params, exc)
+        raise ConnectionError("Network failure while calling Binance Futures.") from exc
+    except Exception as exc:
+        logger.error("Unexpected order failure | params=%s | error=%s", params, exc)
         raise

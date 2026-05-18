@@ -1,6 +1,7 @@
 import argparse
 import os
 from dotenv import load_dotenv
+from binance.exceptions import BinanceAPIException, BinanceRequestException
 from bot.client import get_client
 from bot.orders import place_order
 from bot.validators import validate_order
@@ -77,7 +78,12 @@ def main():
         print("=====================================")
         print("\n Order placed successfully!\n")
 
+    except (PermissionError, ConnectionError, ValueError) as e:
+        print(f"\n Failed to place order: {e}\n")
+    except (BinanceAPIException, BinanceRequestException) as e:
+        print(f"\n Failed to place order: {e}\n")
     except Exception as e:
+        logger.exception("Unhandled CLI error")
         print(f"\n Failed to place order: {e}\n")
 
 if __name__ == "__main__":

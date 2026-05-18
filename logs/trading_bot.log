@@ -1,0 +1,24 @@
+2026-05-18 21:32:33,922 | INFO | Binance Futures Testnet client initialized.
+2026-05-18 21:32:33,923 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 21:32:34,936 | ERROR | Order failed | error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-05-18 22:06:44,493 | INFO | Binance Futures Testnet client initialized.
+2026-05-18 22:06:44,493 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:06:45,378 | ERROR | Order failed | error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-05-18 22:07:13,113 | INFO | Binance Futures Testnet client initialized.
+2026-05-18 22:07:13,113 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:07:13,878 | ERROR | Order failed | error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-05-18 22:08:59,402 | INFO | Binance Futures Testnet client initialized.
+2026-05-18 22:08:59,402 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:09:00,006 | ERROR | Order failed | error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-05-18 22:16:08,439 | INFO | Binance Futures client initialized | futures_url=https://testnet.binancefuture.com/fapi
+2026-05-18 22:16:08,440 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:16:09,314 | ERROR | Binance API error | code=-2015 | message=Invalid API-key, IP, or permissions for action | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:18:44,070 | INFO | Binance Futures client initialized | futures_url=https://testnet.binancefuture.com/fapi
+2026-05-18 22:18:44,070 | INFO | Placing MARKET order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'quantity': 0.001, 'type': 'MARKET'}
+2026-05-18 22:18:44,786 | INFO | Order success | response: {'orderId': 13157149550, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'x-Cb7ytekJa09894137e1976d3599e6f', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0010', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1779122925717}
+2026-05-18 22:19:50,580 | INFO | Binance Futures client initialized | futures_url=https://testnet.binancefuture.com/fapi
+2026-05-18 22:19:50,580 | INFO | Placing LIMIT order | params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'quantity': 0.001, 'type': 'LIMIT', 'price': 35000.0, 'timeInForce': 'GTC'}
+2026-05-18 22:19:51,511 | ERROR | Binance API error | code=-4024 | message=Limit price can't be lower than 72583.21. | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'quantity': 0.001, 'type': 'LIMIT', 'price': 35000.0, 'timeInForce': 'GTC'}
+2026-05-18 22:20:18,488 | INFO | Binance Futures client initialized | futures_url=https://testnet.binancefuture.com/fapi
+2026-05-18 22:20:18,489 | INFO | Placing STOP_LIMIT order | params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'quantity': 0.001, 'type': 'STOP', 'price': 34900.0, 'stopPrice': 35100.0, 'timeInForce': 'GTC'}
+2026-05-18 22:20:19,307 | ERROR | Binance API error | code=-4164 | message=Order's notional must be no smaller than 50 (unless you choose reduce only). | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'quantity': 0.001, 'type': 'STOP', 'price': 34900.0, 'stopPrice': 35100.0, 'timeInForce': 'GTC'}
