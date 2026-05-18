@@ -51,6 +51,7 @@ If you are seeing `APIError(code=-2015)`, confirm that the key/secret come from 
 - `GET /health`
 	- Returns 200 with `{ "status": "ok" }` when the service is up.
 
+
 - `POST /order`
 	- Place an order. Expect `application/json` body with fields:
 		- `symbol` (string) — e.g. `BTCUSDT`
@@ -72,7 +73,7 @@ If you are seeing `APIError(code=-2015)`, confirm that the key/secret come from 
 }
 ```
 
-	- Response: JSON with a success message and selected order fields (orderId, status, type, executedQty, avgPrice). The exact response keys come from the `python-binance` client.
+	- Response: JSON with a labeled success message such as `BUY MARKET order placed successfully.` plus selected order fields (`side`, `orderType`, `orderId`, `status`, `type`, `executedQty`, `avgPrice`). The exact response keys come from the `python-binance` client.
 
 ## CLI Usage
 
@@ -92,6 +93,8 @@ python cli.py --symbol BTCUSDT --side SELL --order_type STOP_LIMIT --quantity 0.
 ```
 
 The LIMIT and STOP_LIMIT examples above use values that are more likely to satisfy Binance Futures testnet price and notional filters for BTCUSDT. If Binance returns a filter error, adjust `price` and/or `quantity` to match the current exchange rules.
+
+When an order succeeds, the CLI prints a labeled response header and success line such as `BUY MARKET` or `SELL LIMIT` so you can tell which action was placed at a glance.
 
 ## Behaviour notes
 

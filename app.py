@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from binance.exceptions import BinanceAPIException, BinanceRequestException
 from bot.client import get_client
 from bot.orders import place_order
+from bot.orders import order_label
 from bot.validators import validate_order
 from bot.logging_config import setup_logger
 
@@ -42,8 +43,12 @@ def create_order():
             stop_price=data.get("stop_price")
         )
 
+        display_label = order_label(data["side"], data["order_type"])
+
         result = {
-            "message":     "Order placed successfully.",
+            "message":     f"{display_label} order placed successfully.",
+            "side":        data["side"].upper(),
+            "orderType":   data["order_type"].upper(),
             "orderId":     response.get("orderId"),
             "status":      response.get("status"),
             "type":        response.get("type"),

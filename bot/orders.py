@@ -4,6 +4,10 @@ from bot.logging_config import setup_logger
 
 logger = setup_logger()
 
+
+def order_label(side, order_type):
+    return f"{str(side).upper()} {str(order_type).upper()}"
+
 def place_order(client, symbol, side, order_type, quantity, price=None, stop_price=None):
     """
     Places MARKET, LIMIT, or STOP_LIMIT orders on Binance Futures Testnet.

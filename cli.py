@@ -5,6 +5,7 @@ from binance.exceptions import BinanceAPIException, BinanceRequestException
 from bot.client import get_client
 from bot.orders import place_order
 from bot.validators import validate_order
+from bot.orders import order_label
 from bot.logging_config import setup_logger
 
 load_dotenv()
@@ -67,16 +68,19 @@ def main():
             stop_price=data.get("stop_price")
         )
 
-        print("========== Order Response ==========")
+        display_label = order_label(data["side"], data["order_type"])
+
+        print(f"========== Order Response: {display_label} ==========")
         print(f"  Order ID     : {response.get('orderId')}")
         print(f"  Status       : {response.get('status')}")
-        print(f"  Type         : {response.get('type')}")
+        print(f"  Side         : {response.get('side', data['side'].upper())}")
+        print(f"  Type         : {response.get('type', data['order_type'].upper())}")
         print(f"  Executed Qty : {response.get('executedQty')}")
         print(f"  Avg Price    : {response.get('avgPrice')}")
         if response.get("stopPrice"):
             print(f"  Stop Price   : {response.get('stopPrice')}")
         print("=====================================")
-        print("\n Order placed successfully!\n")
+        print(f"\n Order placed successfully: {display_label}!\n")
 
     except (PermissionError, ConnectionError, ValueError) as e:
         print(f"\n Failed to place order: {e}\n")
